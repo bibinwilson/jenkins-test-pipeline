@@ -1,15 +1,25 @@
-node {
+node('master') {
 
-
-    stage "build"
+    stage('BUILD') {
      echo "Hello World"
+    }
     
-    stage "test"
-    echo "Hello World"
+    stage ('TESTS') {
+    parallel(
+      "Cart Tests": {
+        echo "running cart tests "
+      },
+      "Discount Tests": {
+        echo "running discount tests"
+      }
+    )
+    }
     
-    stage "deploy"
+    stage('DEPLOY') {
     echo "Hello World"
+    }
 
-    stage 'Goodbye world'
+    stage('VERIFY') {
     echo "Goodbye world"
+    }
 }
